@@ -100,9 +100,12 @@ def train(X_train,Y_train,Xus,Yus):
     rf_model = RandomForestClassifier(random_state=18)  
 
     # Train the models on the training data
-    svm_model.fit(X_train, Y_train)  
-    nb_model.fit(X_train, Y_train)   
-    rf_model.fit(X_train, Y_train)     
+    svm_model.fit(X_train, Y_train)
+    nb_model.fit(X_train, Y_train)
+    rf_model.fit(X_train, Y_train)
+    
+      
+        
     
     models = [svm_model,nb_model,rf_model]
     model_names = ["svm_model", "nb_model", "rf_model"]
@@ -111,7 +114,7 @@ def train(X_train,Y_train,Xus,Yus):
     for model, model_name in zip(models, model_names):
         save_model(model, model_name)
     
-    predict(models,arrays)#--------------------------------------------------------------  
+    # predict(models,arrays)  #--------------------------------   --------------------------------
         
 def predict(models,arrays):
     svm_model,nb_model,rf_model =models
