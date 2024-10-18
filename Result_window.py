@@ -123,8 +123,8 @@ class ResultWindow(QDialog):
             X = self.X
             data_to_add = pd.DataFrame([list(X) + [disease_name]])
 
-            # Append the new data to the CSV file
-            data_to_add.to_csv('data.csv', mode='a', header=False, index=False)
+            # uncomment to Append the new data to the CSV file
+            # data_to_add.to_csv('data.csv', mode='a', header=False, index=False)
             self.pop_add("The data have been added to the training data. Please wait for the training process to complete.")
             self.run_predict_trainer()
 
