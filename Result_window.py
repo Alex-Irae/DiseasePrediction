@@ -7,15 +7,26 @@ import subprocess
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanva
 import matplotlib.pyplot as plt
 import seaborn as sns
+from disease_predict import (setX, predict, load_diseases, load_models)
+
 
 
 class ResultWindow(QDialog):
-    def __init__(self, predictions, probabilities,models, models_name, disease_dict, X, symptoms):
+    def __init__(self, symptoms):
         super().__init__()
-        self.X = X
-        self.models = models
+
         self.symptoms = symptoms
         
+        disease_dict = load_diseases()
+        self.models, model_names = load_models()
+        
+        # to only display the classifier uncomment those
+        x = model_names.index('voting_classifier')
+        self.models = [self.models[x]]
+        model_names = [model_names[x]]
+        
+        self.X = setX(symptoms)
+        predictions, probabilities = predict(self.X, self.models)
         
         self.setWindowTitle("Prediction Results")
         self.setGeometry(1000, 500, 1000, 1000)
@@ -23,13 +34,16 @@ class ResultWindow(QDialog):
         
         # Button to add prediction to the training data
         self.add_button = QPushButton("Add Prediction", self)
+        
         self.weight_button = QPushButton("Symptoms influence", self)
+        if len(self.models) == 1:
+            self.weight_button.hide()
         
         self.disease_guess = []
         self.disease_probs = []
         
         # Iterate over each model to display its prediction and probabilities
-        for idx, model_name in enumerate(models_name):
+        for idx, model_name in enumerate(model_names):
             disease_probs = probabilities[idx]
             prediction = predictions[idx]
             disease_name = disease_dict[str(prediction)]
@@ -180,8 +194,8 @@ class ResultWindow(QDialog):
     def plot_feature_importance(self, dialog, feature_names):
         fig, axes = plt.subplots(1, 3, figsize=(18, 6))
         
-        vector_len = len(self.X)        
         
+    
         lr_model,rf_model, svm_model, voting_classifier, xgb_model = self.models
         to_plot = [ lr_model,rf_model, xgb_model,]
         model_names = ["Logistic Regression","Random Forest", "XGBoost"]
