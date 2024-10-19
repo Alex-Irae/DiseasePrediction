@@ -83,7 +83,7 @@ class ResultWindow(QDialog):
         canvas = FigureCanva(figure)
 
         # Filter probabilities to only show those greater than 0.1
-        filtered_probs = {disease_dict[str(i)]: prob for i, prob in enumerate(disease_probs) if prob > 0.08}
+        filtered_probs = {disease_dict[str(i)]: prob for i, prob in enumerate(disease_probs) if prob >0.15}
         if not filtered_probs:
             max_index = disease_probs.argmax()
             filtered_probs[disease_dict[str(max_index)]] = max(disease_probs)
@@ -182,14 +182,14 @@ class ResultWindow(QDialog):
         
         vector_len = len(self.X)        
         
-        rf_model, lr_model, svm_model, voting_classifier, xgb_model = self.models
-        to_plot = [rf_model, xgb_model, lr_model]
-        model_names = ["Random Forest", "XGBoost", "Logistic Regression"]
+        lr_model,rf_model, svm_model, voting_classifier, xgb_model = self.models
+        to_plot = [ lr_model,rf_model, xgb_model,]
+        model_names = ["Logistic Regression","Random Forest", "XGBoost"]
 
         for i, model in enumerate(to_plot):
             model_name = model_names[i]
             
-            if model_name in ["XGBoost", "Random Forest"]:
+            if model_name == "XGBoost" or model_name== "Random Forest":
                 
                 importances = model.feature_importances_
                 importances = [imp for imp, feature in zip(importances, feature_names) if feature != 0]
