@@ -320,7 +320,7 @@ def train(X_train, Y_train, Xus, Yus):
         save_model(model, model_name)  
      
     arrays = [Xus, Yus]  # Unseen data arrays
-    # prediction(models, arrays)  # Predict and visualize results
+    prediction(models, arrays)  # Predict and visualize results
 
 
 
