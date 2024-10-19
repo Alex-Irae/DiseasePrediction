@@ -288,9 +288,16 @@ class PredictDis(QMainWindow):
         input_data = setX(symptoms)
         
         models, model_names = load_models()
+        
+        
+        ## to only show the classifier uncomment those
+        # x = model_names.index('voting_classifier')
+        # models = [models[x]]
+        # model_names = [model_names[x]]
+        
         predictions, probabilities = predict(input_data, models)
         
-        result_window = ResultWindow(predictions, probabilities, model_names, disease, input_data)
+        result_window = ResultWindow(predictions, probabilities,models, model_names, disease, input_data,symptoms)
         self.reset()
         result_window.exec_()
 

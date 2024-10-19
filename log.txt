@@ -1,0 +1,21 @@
+PredictTrainer------------------------------------------------------------------------
+added function comments
+use of smote to balanve the data (up instead of down)
+add hyperparamter tuning for models svm and rf
+add voting classifier (pick the majority)
+add a crossvalidation to check if a model is underperforming in the votingclf
+dont take into account a model if performances are too low
+updated filepath to be dynamic
+save models in dedicated folder
+Changed Gaussian to Logisticregression and XGBoost for diversity of results
+Main------------------------------------------------------------------------
+
+Disease_predict------------------------------------------------------------------------
+modified load_models to be dynamic
+
+ResultWindow------------------------------------------------------------------------
+mini threshold for idsplay changed to 5%
+ass button to visualize features weights for different models
+
+General----------------------------------------------------------------------------
+modified data structure adding a new folder for models

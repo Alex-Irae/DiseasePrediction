@@ -1,5 +1,6 @@
 import pickle
 import json
+import os
 
 def load_symptoms():
     """Load the list of symptoms from a JSON file."""
@@ -14,9 +15,20 @@ def load_diseases():
     return diseases
 
 def load_models():
-    """Load the trained models from pickle files."""
-    model_names = ['svm_model.pkl', 'nb_model.pkl', 'rf_model.pkl']
-    models = [pickle.load(open(model_name, 'rb')) for model_name in model_names]
+    """Load the trained models"""
+
+    models_directory = os.path.join(os.getcwd(), 'models')
+    
+    model_files = [f for f in os.listdir(models_directory) if f.endswith('.pkl')]
+    models = []
+    model_names = []
+
+    for model_file in model_files:
+        model_path = os.path.join(models_directory, model_file)
+        with open(model_path, 'rb') as f:  
+            models.append(pickle.load(f))  
+        model_names.append(model_file[:-4])  
+
     return models, model_names
 
 def setX(symptoms):
