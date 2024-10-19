@@ -364,8 +364,6 @@ def launch(df):
     - df: DataFrame, input dataset for training.
     """
     X_train, Y_train, Xus, Yus = categorize(df)  # Split dataset
-
-
     train(X_train, Y_train, Xus, Yus)  # Train models
     
 
