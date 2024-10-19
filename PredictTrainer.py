@@ -300,6 +300,7 @@ def train(X_train, Y_train, Xus, Yus):
     models = selected_models
     model_names = selected_models_names
     
+    
     # if no model meets the criteria, use all models
     if not models :
         models = models_list
@@ -320,13 +321,13 @@ def train(X_train, Y_train, Xus, Yus):
         save_model(model, model_name)  
      
     arrays = [Xus, Yus]  # Unseen data arrays
-    # prediction(models, arrays)  # Predict and visualize results
+    prediction(voting_clf, arrays)  # Predict and visualize results
 
 
 
 
 
-def prediction(models, arrays):
+def prediction(voting_clf, arrays):
     """
     Predicts on unseen data using trained models and evaluates the combined model.
     
@@ -334,14 +335,10 @@ def prediction(models, arrays):
     - models: list, list of trained models.
     - arrays: list, contains features and labels for unseen data.
     """
-    svm_model, nb_model, rf_model = models  # Unpack models
+    
     Xus, Yus = arrays  # Unpack unseen data
 
-    # Combine predictions using VotingClassifier
-    voting_clf = VotingClassifier(estimators=[('svm', svm_model),
-                                              ('nb', nb_model), 
-                                              ('rf', rf_model)],
-                                                voting='soft')  
+   
     
     voting_clf.fit(Xus, Yus)  
     final_preds = voting_clf.predict(Xus)  
