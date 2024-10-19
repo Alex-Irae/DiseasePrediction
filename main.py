@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import (QMainWindow, QLabel, QWidget, QVBoxLayout, QHBoxLay
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 from Result_window import ResultWindow
-import threading
 
 from disease_predict import (setX, predict, load_diseases, load_models, load_symptoms)
 

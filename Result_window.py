@@ -177,30 +177,6 @@ class ResultWindow(QDialog):
         self.pop_up("Training complete, Please reload the application to see the updated results.")
 
 
-# def plot_feature_importance(model, model_name,feature_names):
-#     """
-#     Plots feature importance for a given model.
-
-#     Parameters:
-#     - model: Trained model to extract feature importance from.
-#     - feature_names: List of feature names.
-#     """
-#     if model_name == "XGBoost" or  model_name == "Random Forest":
-#         importances = model.feature_importances_
-#         indices = np.argsort(importances)[::-1]
-#         plt.figure(figsize=(10, 6))
-#         sns.barplot( x=np.array(feature_names)[indices], palette="viridis",y=importances[indices],)
-#         plt.title(f'Feature Importances {model_name}')
-#         plt.show()
-#     elif model_name == "Logistic Regression":
-#         coef = model.coef_[0]  
-#         indices = np.argsort(coef)[::-1]
-        
-#         plt.figure(figsize=(10, 6))
-#         sns.barplot(x=np.array(feature_names)[indices], y=coef[indices], palette="viridis")
-#         plt.title('Feature Importance (Logistic Regression Coefficients)')
-#         plt.show()
-
     def plot_feature_importance(self, dialog, feature_names):
         fig, axes = plt.subplots(1, 3, figsize=(18, 6))
         
@@ -220,13 +196,10 @@ class ResultWindow(QDialog):
 
                 feature_names = [feature for feature in feature_names if feature != 0]
                                 
-               
-                
                 sns.barplot(ax=axes[i], x=feature_names, y=importances, palette="viridis",hue=feature_names,legend=False)
        
-            elif model_name == "Logistic Regression":
-
-                
+       
+            elif model_name == "Logistic Regression":                
                 coef = model.coef_[0]
 
                 filtered_coef = [c for c, feature in zip(coef, feature_names) if feature != 0]

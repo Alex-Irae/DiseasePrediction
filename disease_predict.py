@@ -4,15 +4,17 @@ import os
 
 def load_symptoms():
     """Load the list of symptoms from a JSON file."""
-    with open('symptoms_list.json', 'r') as file:
+    with open('ressources\symptoms_list.json', 'r') as file:
         symptoms_list = json.load(file)
     return symptoms_list
 
+
 def load_diseases():
     """Load the dictionary of diseases from a JSON file."""
-    with open('disease_dict.json', 'r') as file:
+    with open('ressources\disease_dict.json', 'r') as file:
         diseases = json.load(file)
     return diseases
+
 
 def load_models():
     """Load the trained models"""

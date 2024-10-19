@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 
 
 
-filepath = os.getcwd() + "\data.csv"
+filepath = os.getcwd() + "\\ressources\data.csv"
 
 
 
@@ -83,11 +83,11 @@ def transfer(df, encoder):
     - encoder: LabelEncoder, encoder used to transform diagnostic labels.
     """
     disease_dict = {str(idx): name for idx, name in enumerate(encoder.classes_)}
-    with open('disease_dict.json', 'w') as file:
+    with open('ressources\disease_dict.json', 'w') as file:
         json.dump(disease_dict, file)  
 
     symptom_list = df.columns.tolist()[:-1]  
-    with open('symptoms_list.json', 'w') as file:
+    with open('ressources\symptoms_list.json', 'w') as file:
         json.dump(symptom_list, file) 
 
 
@@ -369,5 +369,4 @@ def launch(df):
 
 if __name__ == "__main__":
     df = read(filepath)  # Read the dataset
-    launch(df)  # Start the training process
-    
+    # launch(df)  # Start the training process
