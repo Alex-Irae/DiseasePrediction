@@ -9,7 +9,7 @@ from Result_window import ResultWindow
 from disease_predict import (setX, predict, load_diseases, load_models, load_symptoms)
 
 # Path to the application icon
-icon_path = "icon.png"
+icon_path = "ressources\icon.png"
 
 # Symptom categories
 symptom_categories = {
