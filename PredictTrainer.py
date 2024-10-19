@@ -369,4 +369,4 @@ def launch(df):
 
 if __name__ == "__main__":
     df = read(filepath)  # Read the dataset
-    # launch(df)  # Start the training process
+    launch(df)  # Start the training process
