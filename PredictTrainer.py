@@ -338,8 +338,7 @@ def prediction(voting_clf, arrays):
     
     Xus, Yus = arrays  # Unpack unseen data
 
-   
-    
+
     voting_clf.fit(Xus, Yus)  
     final_preds = voting_clf.predict(Xus)  
 
