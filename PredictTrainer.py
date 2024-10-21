@@ -105,7 +105,7 @@ def encode(df):
     - encoder: LabelEncoder, fitted encoder for future reference.
     """
     encoder = LabelEncoder()
-    df["diagnostic"] = encoder.fit_transform(df["diagnostic"]) # encode the labels (from name to nnumber)
+    df["diagnostic"] = encoder.fit_transform(df["diagnostic"]) 
     return df, encoder
 
 
