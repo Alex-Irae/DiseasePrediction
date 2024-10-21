@@ -51,7 +51,7 @@ class ResultWindow(QDialog):
 
         # Configure the window title and layout
         self.setWindowTitle("Prediction Results")
-        self.setGeometry(600, 250, 1200, 1200)
+        self.setGeometry(600, 175, 1400, 1300)
         layout = QVBoxLayout()
 
         # Buttons for additional actions
@@ -321,6 +321,11 @@ class ResultWindow(QDialog):
         
         plt.tight_layout()  
         
+        self.disease_label = QLabel(f"Predicted disease: {self.disease}", dialog)
+        self.disease_label.setStyleSheet("font-size: 20px; font-family: Century Gothic; font-weight: bold;margin: 10px;")
+        self.disease_label.setAlignment(Qt.AlignCenter)
+        self.disease_label.setFixedHeight(50)
         canvas = FigureCanva(fig)  
         layout = QVBoxLayout(dialog)
+        layout.addWidget(self.disease_label)
         layout.addWidget(canvas)

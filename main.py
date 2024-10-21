@@ -61,7 +61,7 @@ class PredictDis(QMainWindow):
         # Initialize the main window properties
         self.setWindowTitle("Disease Prediction")
         self.setWindowIcon(QIcon(icon_path))
-        self.setGeometry(600, 250, 1200, 1200)
+        self.setGeometry(600, 175, 1400, 1300)
         
         # UI components
         self.symptom_input = QLineEdit(self)
