@@ -321,7 +321,7 @@ def train(X_train, Y_train, Xus, Yus):
         save_model(model, model_name)  
      
     arrays = [Xus, Yus]  # Unseen data arrays
-    prediction(voting_clf, arrays)  # Predict and visualize results
+    # prediction(voting_clf, arrays)  # Predict and visualize results
 
 
 

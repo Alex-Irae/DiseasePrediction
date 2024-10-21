@@ -271,8 +271,9 @@ class ResultWindow(QDialog):
         """	
         run the training script to update the model
         """	
-        subprocess.run(['python', 'PredictTrainer.py'])
-        self.pop_up("Training complete, Please reload the application to see the updated results.")
+        # subprocess.run(['python', 'PredictTrainer.py'])
+        self.pop_up("Training complete, the application will now restart")
+        # subprocess.run(['python', 'main.py'])
         
         
     def plot_feature_importance(self, dialog, feature_names):

@@ -311,6 +311,7 @@ class PredictDis(QMainWindow):
         self.selected_symptoms = {k: False for k in self.selected_symptoms}
         self.updateSelectedSymptomsDisplay()
         self.updateSymptoms()
+        
 
     def showPopup(self, error_code):
         """
@@ -337,6 +338,7 @@ class PredictDis(QMainWindow):
         """
         self.result_window = ResultWindow(selected_symptoms)
         self.result_window.show()
+        self.reset()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
