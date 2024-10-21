@@ -120,7 +120,7 @@ class ResultWindow(QDialog):
         # Connect buttons to their respective functions
         self.add_button.clicked.connect(lambda: self.pop_up("Do you want to add your data to be trained? This action cannot be undone.", 1))
         self.weight_button.clicked.connect(self.show_weight)
-        self.recom_button.clicked.connect(lambda: self.display_recommendation(self.disease))
+        self.recom_button.clicked.connect(lambda: self.display_recommendation())
 
     def create_result_section(self, model_name, disease_probs, disease_dict, predicted_disease):
         """
@@ -172,7 +172,7 @@ class ResultWindow(QDialog):
         plt.close()
         return section_widget
 
-    def display_recommendation(self, disease):
+    def display_recommendation(self):
         """
         Displays recommendations based on the predicted disease.
         
@@ -205,8 +205,7 @@ class ResultWindow(QDialog):
         msg.setText(message)
         msg.setWindowTitle("Warning!")
         
-        # Show Yes/No if `ind` is set, else just Ok
-        if ind != 0:  # To add data
+        if ind != 0:  
             msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
             result = msg.exec_()
             if result == QMessageBox.Yes:
@@ -243,13 +242,39 @@ class ResultWindow(QDialog):
     def add_data(self):
         """
         Adds the prediction data to the training dataset, checks for confidence.
-        """
+        """        
         for disease in self.disease_guess:
-            if self.disease_probs[self.disease_guess.index(disease)] > 0.95:
-                subprocess.run(["python", "add_to_database.py", disease] + self.symptoms, shell=True)
-                self.pop_up("The prediction has been added")
-                break
+            if self.disease_guess.count(disease) == 1:
+                self.disease_probs.remove(self.disease_probs[self.disease_guess.index(disease)])
+                self.disease_guess.remove(disease)
+                
+            if self.disease_guess.count(disease) == 2:
+                for prob in self.disease_probs:
+                    if prob > 0.25:
+                        self.pop_up("The statistics are too uncertain to train, please try again later.")
+                        return
+                    else:
+                        pass
+        if len(self.disease_guess) == 0:
+            self.pop_up("The statistics are too uncertain to train, please try again later.")
+            return
+        else:
+            disease_name = self.disease_guess[0]
+            X = self.X
+            data_to_add = pd.DataFrame([list(X) + [disease_name]])
 
+            # data_to_add.to_csv('data.csv', mode='a', header=False, index=False)
+            self.pop_up("The data have been added to the training data. Please wait for the training process to complete.")
+            self.run_predict_trainer()
+
+    def run_predict_trainer(self):
+        """	
+        run the training script to update the model
+        """	
+        subprocess.run(['python', 'PredictTrainer.py'])
+        self.pop_up("Training complete, Please reload the application to see the updated results.")
+        
+        
     def plot_feature_importance(self, dialog, feature_names):
         """
         Plots the feature importance (weights) for each symptom in a bar chart.
@@ -258,11 +283,43 @@ class ResultWindow(QDialog):
             dialog (QDialog): The dialog window in which the plot is displayed.
             feature_names (list): List of symptom feature names.
         """
+        fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+        fig.suptitle('Feature Importances', fontsize=20)
+        lr_model,rf_model, svm_model , xgb_model ,voting_classifier= self.models
+        to_plot = [ lr_model,rf_model, xgb_model,]
+        model_names = ["Logistic Regression","Random Forest", "XGBoost"]
+
+        for i, model in enumerate(to_plot):
+            model_name = model_names[i]
+            
+            if model_name == "XGBoost" or model_name== "Random Forest":
+                
+                importances = model.feature_importances_
+                importances = [imp for imp, feature in zip(importances, feature_names) if feature != 0]
+
+                feature_names = [feature for feature in feature_names if feature != 0]
+                                
+                sns.barplot(ax=axes[i], x=feature_names, y=importances, palette="viridis",hue=feature_names,legend=False)
+       
+       
+            elif model_name == "Logistic Regression":                
+                coef = model.coef_[0]
+
+                filtered_coef = [c for c, feature in zip(coef, feature_names) if feature != 0]
+                filtered_feature_names = [feature for feature in feature_names if feature != 0]
+
+                indices = np.argsort(filtered_coef)[::-1]
+
+                sns.barplot(ax=axes[i],  x=np.array(filtered_feature_names)[indices],  y=np.array(filtered_coef)[indices],  palette="viridis", hue=np.array(filtered_feature_names)[indices],  legend=False)
+                
+            axes[i].set_title(f'Feature Importances: {model_name}')
+            axes[i].set_xlabel('Features')
+            axes[i].set_ylabel('Importance')
+            
+            axes[i].tick_params(axis='x', rotation=45)  
+        
+        plt.tight_layout()  
+        
+        canvas = FigureCanva(fig)  
         layout = QVBoxLayout(dialog)
-        figure, ax = plt.subplots(figsize=(10, 8))
-        canvas = FigureCanva(figure)
-        sns.barplot(x=feature_names, y=self.models[-1].estimators_[0].coef_[0], ax=ax)
-        ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
         layout.addWidget(canvas)
-        dialog.setLayout(layout)
-        plt.close()

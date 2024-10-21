@@ -18,6 +18,37 @@ symptom_categories = {
                          "irritability", "cold_hands_and_feets", "sunken_eyes", "weakness_in_limbs", 
                          "weakness_of_one_body_side", "toxic_look_(typhos)", "family_history", "headache"],
     "All Symptoms": load_symptoms(),
+    
+    "Cardiovascular Symptoms": ["fast_heart_rate", "palpitations", "prominent_veins_on_calf",
+                                "swollen_blood_vessels", "swollen_legs"],
+    "Liver Symptoms": ["yellowish_skin", "dark_urine", "acute_liver_failure", "fluid_overload",
+                       "swelling_of_stomach", "fluid_overload.1"],
+    "Reproductive Symptoms": ["abnormal_menstruation", "extra_marital_contacts", "irregular_sugar_level",
+                              "receiving_blood_transfusion", "receiving_unsterile_injections",
+                              "history_of_alcohol_consumption", "puffy_face_and_eyes", "swollen_extremeties"],
+    "Urinary Symptoms": ["burning_micturition", "yellow_urine", "yellowing_of_eyes", 
+                         "foul_smell_of_urine", "continuous_feel_of_urine", "bladder_discomfort", "polyuria"],
+    "Neurological Symptoms": ["dizziness", "blurred_and_distorted_vision", "slurred_speech", 
+                              "spinning_movements", "loss_of_balance", "unsteadiness", "altered_sensorium",
+                              "lack_of_concentration", "visual_disturbances", "coma", "loss_of_smell", "pain_behind_the_eyes"],
+    "Musculoskeletal Symptoms": ["swollen_legs", "joint_pain", "muscle_wasting", "back_pain", "neck_pain",
+                                 "knee_pain", "hip_joint_pain", "muscle_weakness", "stiff_neck",
+                                 "swelling_joints", "movement_stiffness", "painful_walking", "muscle_pain",
+                                 "cramps", "weakness_of_one_body_side"],
+    "Digestive Symptoms": ["pain_during_bowel_movements", "pain_in_anal_region", "bloody_stool",
+                           "irritation_in_anus", "excessive_hunger", "increased_appetite", "stomach_pain",
+                           "acidity", "ulcers_on_tongue", "vomiting", "spotting_urination", "loss_of_appetite",
+                           "indigestion", "nausea", "diarrhoea", "constipation", "abdominal_pain", 
+                           "belly_pain", "stomach_bleeding", "distention_of_abdomen", "passage_of_gases"],
+    "Respiratory Symptoms": ["continuous_sneezing", "cough", "breathlessness", "phlegm", "throat_irritation", 
+                             "sinus_pressure", "runny_nose", "congestion", "chest_pain", "fast_heart_rate",
+                             "palpitations", "mucoid_sputum", "rusty_sputum", "blood_in_sputum"],
+    "Skin Symptoms": ["bruising", "brittle_nails", "pus_filled_pimples", "blackheads", "redness_of_eyes",
+                      "patches_in_throat", "swelled_lymph_nodes", "itching", "skin_rash", "nodal_skin_eruptions",
+                      "red_spots_over_body", "scurring", "blister", "red_sore_around_nose", "yellow_crust_ooze",
+                      "skin_peeling", "silver_like_dusting", "small_dents_in_nails", "inflammatory_nails", 
+                      "drying_and_tingling_lips", "dischromic_patches", "internal_itching"]
+    
 }
 
 # Load the full list of symptoms from an external source
