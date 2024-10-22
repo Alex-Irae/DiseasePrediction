@@ -38,17 +38,18 @@ Results: The script will read the dataset, preprocess the data, train the models
 Evaluation: Upon completion, the script will print out the accuracy of the models and display confusion matrices for better insights.
 
 ⚕️File Structure
-.
-├── ressource
-│   ├── data.csv                # Input dataset
-│   ├── disease_dict.json       # Mapping of encoded disease labels
-│   └── symptoms_list.json      # List of symptom features
-├── models                      # Directory for saved models
-├── ResultWindow.py             # Display the results
-├── main.py                     # Create the UI
-├── PredictTrainer.py           # Train models and save them
-├── disease_predict.py          # Use the models to calculate probabilities
-└── README.md                   # Project documentation
+		
+	├── ressource
+	│   ├── data.csv               	          # Input dataset
+ 	│   ├── disease_recommandation.json				# Mapping of pgysician recommandation for each disease
+	│   ├── disease_dict.json                 # Mapping of encoded disease labels (Generated at runtime)
+	│   └── symptoms_list.json                # List of symptom features  (Generated at runtime)
+	├── models                                # Directory for saved models
+	├── ResultWindow.py                       # Display the results
+	├── main.py                               # Create the UI
+	├── PredictTrainer.py                     # Generate and train the models bbefore saving them, generates .json ressources files
+	├── disease_predict.py                    # Use the models to calculate probabilities
+	└── README.md                             # Project documentation
 
 
 ⚕️Contributing
