@@ -41,7 +41,7 @@ Evaluation: Upon completion, the script will print out the accuracy of the model
 		
 	├── ressource
 	│   ├── data.csv               	          # Input dataset
- 	│   ├── disease_recommandation.json				# Mapping of pgysician recommandation for each disease
+ 	│   ├── disease_recommandation.json	  # Mapping of pgysician recommandation for each disease
 	│   ├── disease_dict.json                 # Mapping of encoded disease labels (Generated at runtime)
 	│   └── symptoms_list.json                # List of symptom features  (Generated at runtime)
 	├── models                                # Directory for saved models
