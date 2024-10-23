@@ -165,7 +165,7 @@ class Cnn_ResultWindow(QDialog):
             data_to_add = pd.DataFrame([list(X) + [disease_name]])
 
             # uncomment to Append the new data to the CSV file
-            # data_to_add.to_csv('\\ressources\data.csv', mode='a', header=False, index=False)
+            data_to_add.to_csv('\\ressources\data.csv', mode='a', header=False, index=False)
             self.pop_up("The data have been added to the training data. Please wait for the training process to complete.")
             self.run_predict_trainer()
 
@@ -174,7 +174,7 @@ class Cnn_ResultWindow(QDialog):
         run the training script to update the model
         """	
         subprocess.run(['python', 'MlTrainer.py'])
-        subprocess.runn(['python', 'CNNTrainer.py'])
+        subprocess.runn(['python', 'CnnTrainer.py'])
         self.pop_up("Training complete, the application will now restart")
         subprocess.run(['python', 'main.py'])
 

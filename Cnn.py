@@ -198,7 +198,7 @@ class CustomNeuralNetwork:
             'W3': self.W3, 'b3': self.b3,
             'W_output': self.W_output, 'b_output': self.b_output,
         }
-        # save_model(model, f'cnn-{self.mode}-{epochs}-{learning_rate}-{self.hidden_size_1}-{self.hidden_size_2}-{self.hidden_size_3}')
+        save_model(model, f'cnn-{self.mode}-{epochs}-{learning_rate}-{self.hidden_size_1}-{self.hidden_size_2}-{self.hidden_size_3}')
 
     def predict(self, X):
         """

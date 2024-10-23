@@ -1,7 +1,6 @@
 import numpy as np
 import os
 import pandas as pd
-from scipy import stats
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import MinMaxScaler

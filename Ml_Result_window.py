@@ -266,14 +266,14 @@ class Ml_ResultWindow(QDialog):
 
             data_to_add.to_csv('\\ressources\data.csv', mode='a', header=False, index=False)
             self.pop_up("The data have been added to the training data. Please wait for the training process to complete.")
-            # self.run_predict_trainer()
+            self.run_predict_trainer()
 
     def run_predict_trainer(self):
         """	
         run the training script to update the model
         """	
         subprocess.run(['python', 'MlTrainer.py'])
-        subprocess.runn(['python', 'CNNTrainer.py'])
+        subprocess.runn(['python', 'CnnTrainer.py'])
         self.pop_up("Training complete, the application will now restart")
         subprocess.run(['python', 'main.py'])
 
