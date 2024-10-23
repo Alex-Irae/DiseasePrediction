@@ -265,11 +265,11 @@ def train(X_train, Y_train, Xus, Yus):
         cv_score = cross_val_score(voting_clf, X_train, Y_train, cv=cv, scoring='accuracy').mean()
     print(f"voting_classifier Scores: {cv_score} | Mean Accuracy: {cv_score.mean()}")
     
-    # save_model(voting_clf, 'voting_classifier')
+    save_model(voting_clf, 'voting_classifier')
     
-    # for model, model_name in zip(models, model_names):
+    for model, model_name in zip(models, model_names):
          
-        # save_model(model, model_name)  
+        save_model(model, model_name)  
      
     arrays = [Xus, Yus]  # Unseen data arrays
     prediction(voting_clf, arrays)  # Predict and visualize results
