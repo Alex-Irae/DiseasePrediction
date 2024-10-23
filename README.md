@@ -1,11 +1,16 @@
-⚕️Disease Prediction System 🏥
+// Disclaimer\\\
 
-⚕️Overview
+This is a self-taught project and should not in any case be taken as medical advice, if you happen to be sick, check with a specialist.
+
+⚕️Disease Prediction System 🏥.
+
+⚕️Overview.
 
 This project implements a machine learning-based system to predict diseases based on a list of symptoms. It utilizes various classification algorithms, including SVM, Random Forest, XGBoost, and Logistic Regression, to analyze the input data and provide accurate predictions. The system also incorporates techniques for data balancing, hyperparameter tuning, and model evaluation.
 
 
-⚕️Features
+⚕️Features.
+
 Data Preprocessing: Reads data from CSV, handles missing values, and encodes categorical labels.
 Data Balancing: Utilizes SMOTE to oversample minority classes and create a balanced dataset.
 Model Training: Trains multiple models using cross-validation and selects the best performing model.
@@ -15,29 +20,42 @@ Model Persistence: Saves trained models and metadata for future use.
 Visualization: Displays confusion matrices and performance graphs for better understanding.
 
 
-⚕️Installation
-Prerequisites
-Make sure you have Python 3.x installed on your machine. You will also need the following packages:
+⚕️Installation.
 
-pip install numpy pandas scikit-learn xgboost imbalanced-learn matplotlib seaborn lime
+Prerequisites.
+Make sure you have Python 3.10 installed on your machine. You will also need the following packages:
 
+pip install numpy PyQt5 pandas scikit-learn xgboost imbalanced-learn matplotlib seaborn tf(for gpu conmputing)
 
-⚕️Clone the Repository
+⚕️Recommandations.
+
+Some models couldn't be loaded onto the project due to thier sizes, run once the file MlTrainer.py to get all the models (the run is relatively long due to xgboost pipeline (comment if not needed))
+For the cnn model, feel free to play around with the hyperparameters, I upoloaded 2 models with good accuracy and good generalization (96%)
+
+⚕️Clone the Repository.
+
 git clone <https://github.com/Alex-Irae/DiseasePrediction>
 
+⚕️Dataset.
 
-⚕️Dataset
 Ensure you have the dataset in the ressources folder named data.csv. The dataset should contain features representing symptoms and a target column named diagnostic representing the disease labels.
 
-⚕️Usage
-Run the script:
+⚕️Usage.
 
-python PredictDis.py
-Results: The script will read the dataset, preprocess the data, train the models, and save the best performing model as a .pkl file in the models directory.
+Run the script.
 
-Evaluation: Upon completion, the script will print out the accuracy of the models and display confusion matrices for better insights.
+python main.py.
 
-⚕️File Structure
+Results: an UI will be displayed asking to enter symptoms based on real diseases, 
+Once entered, press the subit button to see the predicted disease. 2 new windows will be displayed, one with the results for the neural network and one with different machine learning models.
+The accuracy of the Neural network is higher on unseen data and random inputs.
+On the result window, you can add the sample to the data set and compute the models and neural network once more  with the add data button.
+with the check recommandation button, you can check the recommandation from a professional if you happen to haave this particular disease
+with the symptom influence button, you cna check which symptom influenced the most for each model (some models dont dispose of this function)
+
+
+⚕️File Structure.
+
 		
 	├── ressource
 	│   ├── data.csv               	          # Input dataset
@@ -45,15 +63,22 @@ Evaluation: Upon completion, the script will print out the accuracy of the model
 	│   ├── disease_dict.json                 # Mapping of encoded disease labels (Generated at runtime)
 	│   └── symptoms_list.json                # List of symptom features  (Generated at runtime)
 	├── models                                # Directory for saved models
-	├── ResultWindow.py                       # Display the results
+	├── Ml_Result_Window.py                   # Display the results for the Ml models
+ 	├── Cnn_Result_window			  # Display the rsults for the choosen cnn model
+  	├── Cnn.py				  # Class for the neural network, initialisation and compute
+   	├── CnnTrainer.py			  # File to process the data and train the Neural network
 	├── main.py                               # Create the UI
-	├── PredictTrainer.py                     # Generate and train the models bbefore saving them, generates .json ressources files
-	├── disease_predict.py                    # Use the models to calculate probabilities
+	├── MlTrainer.py                          # Generate and train the models bbefore saving them, generates .json ressources files
+	├── utils.py                    	  # Use the models to calculate probabilities
 	└── README.md                             # Project documentation
 
 
-⚕️Contributing
+⚕️Contributing.
+
 If you would like to contribute to this project, feel free to submit a pull request or open an issue to discuss potential improvements.
 
-⚕️License
+⚕️License.
+
 This project is licensed under the MIT License. See the LICENSE file for more information.
+
+
