@@ -4,8 +4,9 @@ from PyQt5.QtWidgets import (QMainWindow, QLabel, QWidget, QVBoxLayout, QHBoxLay
                              QMessageBox, QListWidget, QApplication)
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
-from Result_window import ResultWindow
-from disease_predict import load_symptoms
+from Ml_Result_window import Ml_ResultWindow
+from utils import load_symptoms
+from Cnn_Result_window import Cnn_ResultWindow
 
 # Path to the application icon
 icon_path = "ressources\icon.png"
@@ -272,12 +273,13 @@ class PredictDis(QMainWindow):
         Input: symptom (str) - symptom name to update
         Output: None (changes the button color based on selection)
         """
-        capitalized_symptom = symptom.replace("_", " ").capitalize()
-        button = self.symptom_buttons[capitalized_symptom]
-        if self.selected_symptoms[symptom]:
-            button.setStyleSheet(button.styleSheet() + " background-color: red;")
-        else:
-            button.setStyleSheet(button.styleSheet().replace(" background-color: red;", ""))
+        symptom_cap = symptom.replace("_", " ").capitalize()
+        button = self.symptom_buttons.get(symptom_cap)
+        if button:
+            if self.selected_symptoms[symptom]:
+                button.setStyleSheet(button.styleSheet() + " background-color: red;")
+            else:
+                button.setStyleSheet(button.styleSheet().replace("background-color: red;", ""))
 
     def updateSelectedSymptomsDisplay(self):
         """
@@ -336,8 +338,10 @@ class PredictDis(QMainWindow):
         Input: selected_symptoms (list of str) - list of symptoms for prediction
         Output: None (displays result in a new window)
         """
-        self.result_window = ResultWindow(selected_symptoms)
-        self.result_window.show()
+        self.ml_result_window = Ml_ResultWindow(selected_symptoms)
+        self.cnn_result_window = Cnn_ResultWindow(selected_symptoms)
+        self.ml_result_window.show()
+        self.cnn_result_window.show()
         self.reset()
 
 if __name__ == "__main__":
