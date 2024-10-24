@@ -6,7 +6,7 @@ This is a self-taught project and should not in any case be taken as medical adv
 
 ⚕️Overview.
 
-This project implements a machine learning-based system to predict diseases based on a list of symptoms. It utilizes various classification algorithms, including SVM, Random Forest, XGBoost, and Logistic Regression, to analyze the input data and provide accurate predictions. The system also incorporates techniques for data balancing, hyperparameter tuning, and model evaluation.
+This project implements a machine learning-based system to predict diseases based on a list of symptoms. It utilizes various classification algorithms, including SVM, Random Forest, XGBoost, and Logistic Regression, and a Depp Neural Network ( ReLu,Swish,ReLu,Swish,SoftMax) to analyze the input data and provide accurate predictions. The system also incorporates techniques for data balancing, hyperparameter tuning, and model evaluation.
 
 
 ⚕️Features.
@@ -14,6 +14,7 @@ This project implements a machine learning-based system to predict diseases base
 Data Preprocessing: Reads data from CSV, handles missing values, and encodes categorical labels.
 Data Balancing: Utilizes SMOTE to oversample minority classes and create a balanced dataset.
 Model Training: Trains multiple models using cross-validation and selects the best performing model.
+DNN Training : Runs Hyperparameter tuning using a grid search and optuna for best layer size/epochs/learning rate combination
 Hyperparameter Tuning: Optimizes model parameters using GridSearchCV for improved accuracy.
 Model Evaluation: Provides detailed performance metrics, including confusion matrices and classification reports.
 Model Persistence: Saves trained models and metadata for future use.
