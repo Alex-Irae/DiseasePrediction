@@ -248,11 +248,11 @@ if __name__ == "__main__":
     tuning(X_train, Y_train, Xus, Yus)
 
     model = CustomNeuralNetwork(h1 = 192,h2=192,h3=64,init='xavier')
-    model.train(X_train, Y_train, epochs=2500, learning_rates=0.07)
+    model.train(X_train, Y_train, epochs=2500, learning_rates=0.07,dropout_rate=0.1,_lambda=1,regularization ='l2')
     
     evaluate_model(model, Xus, Yus) 
     prediction(model, [Xus, Yus])
     
-   
     
- 
+    
+    

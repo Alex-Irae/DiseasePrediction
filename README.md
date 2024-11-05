@@ -15,6 +15,7 @@ Data Preprocessing: Reads data from CSV, handles missing values, and encodes cat
 Data Balancing: Utilizes SMOTE to oversample minority classes and create a balanced dataset.
 Model Training: Trains multiple models using cross-validation and selects the best performing model.
 DNN Training : Runs Hyperparameter tuning using a grid search and optuna for best layer size/epochs/learning rate combination
+DNN backpass : use L2 or L1 regularization and dropout to avoid overfitting.
 Hyperparameter Tuning: Optimizes model parameters using GridSearchCV for improved accuracy.
 Model Evaluation: Provides detailed performance metrics, including confusion matrices and classification reports.
 Model Persistence: Saves trained models and metadata for future use.
