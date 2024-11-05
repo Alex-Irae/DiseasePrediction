@@ -139,15 +139,10 @@ def decode_predictions(encoded_predictions):
 
 
 
-def load_cnn(mode ='xavier', epochs = 2500,learning_rate = 0.05,h1=192,h2=192,h3=64):  
-    with open(f'models\cnn-{mode}-{epochs}-{learning_rate}-{h1}-{h2}-{h3}.pkl', 'rb') as f:
-        params = pickle.load(f)
-        model = CustomNeuralNetwork(h1=h1,h2=h2,h3=h3)
-        model.W1, model.b1 = params['W1'], params['b1']
-        model.W2, model.b2 = params['W2'], params['b2']
-        model.W3, model.b3 = params['W3'], params['b3']
-        model.W_output, model.b_output = params['W_output'], params['b_output']
-    return model,f"cnn-{mode}-{epochs}-{learning_rate}-{h1}-{h2}-{h3}"
+def load_cnn(model_name):  
+    with open(f'models\{model_name}.pkl', 'rb') as f:
+        model = pickle.load(f)
+    return model
 
 
 def delete_models():
