@@ -18,6 +18,8 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import Pipeline
 import tensorflow as tf
 from utils import read, save_model
+from sklearn.metrics import classification_report
+
 
 
 filepath = os.getcwd() + "\\ressources\data.csv"
@@ -263,8 +265,9 @@ def train(X_train, Y_train, Xus, Yus):
     with tf.device('/GPU:0'):
         voting_clf.fit(X_train, Y_train)
         cv_score = cross_val_score(voting_clf, X_train, Y_train, cv=cv, scoring='accuracy').mean()
+        Y_pred = voting_clf.predict(Xus)
     print(f"voting_classifier Scores: {cv_score} | Mean Accuracy: {cv_score.mean()}")
-    
+    print(classification_report(Yus, Y_pred))
     save_model(voting_clf, 'voting_classifier')
     
     for model, model_name in zip(models, model_names):
