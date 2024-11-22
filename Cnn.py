@@ -169,9 +169,9 @@ class CustomNeuralNetwork:
         dW3 = 1 / m * np.dot(np.asarray(self.A2).T, dZ3)  
         db3 = 1 / m * np.sum(np.asarray(dZ3), axis=0, keepdims=True) 
         if self.regularization == 'l2':
-                dW3 += (m/self._lambda) * self.W3
+                dW3 += (self._lambda/2*m) * np.sum(a=np.square(self.W3))
         else :  
-            dW3 += self._lambda * np.sign(self.W3)
+            dW3 +=(self._lambda/2*m) * np.sign(self.W3)
             
         # Second hidden layer gradients
         dA2 = np.dot(dZ3, np.asarray(self.W3).T)  
@@ -180,9 +180,9 @@ class CustomNeuralNetwork:
         dZ2 = np.multiply(dA2 ,relu_derivative(np.asarray(self.Z2)))  
         dW2 = 1 / m * np.dot(np.asarray(self.A1).T, dZ2)  
         if self.regularization == 'l2':
-                dW2 += self._lambda/m * self.W2
+                dW2 += (self._lambda/2*m) * np.sum(a=np.square(self.W2))
         else :  
-            dW2 += self._lambda * np.sign(self.W2)
+            dW2 += (self._lambda/2*m)* np.sign(self.W2)
         db2 = 1 / m * np.sum(np.asarray(dZ2), axis=0, keepdims=True) 
         
 
@@ -193,9 +193,9 @@ class CustomNeuralNetwork:
         dW1 = 1 / m * np.dot(np.asarray(X).T, dZ1)  
         db1 = 1 / m * np.sum(np.asarray(dZ1), axis=0, keepdims=True)  
         if self.regularization == 'l2':
-                dW1 += self._lambda/m * self.W1
+                dW1 += (self._lambda/2*m) * np.sum(a=np.square(self.W1))
         else :  
-            dW1 += self._lambda * np.sign(self.W1)
+            dW1 += (self._lambda/2*m) * np.sign(self.W1)
 
         self.W1 -= learning_rate * dW1  
         self.b1 -= learning_rate * db1  

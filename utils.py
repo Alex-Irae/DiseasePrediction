@@ -83,7 +83,7 @@ def read(path):
     Returns:
     - dfencoded: DataFrame, encoded and balanced dataset.
     """
-    data = pd.read_csv(path).dropna(axis=1)
+    data = pd.read_csv(filepath_or_buffer=path).dropna(axis=1)
     
     datadf = pd.DataFrame(data)
     
